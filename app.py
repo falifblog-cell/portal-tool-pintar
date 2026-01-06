@@ -3,116 +3,131 @@ import streamlit as st
 # --- 1. SETUP PAGE ---
 st.set_page_config(page_title="Portal Tool Pintar", page_icon="🚀", layout="centered")
 
-# --- 2. CUSTOM CSS (UNTUK DESIGN CANTIK) ---
+# --- 2. CUSTOM CSS (DESIGN CINEMATIC) ---
 st.markdown("""
     <style>
-    /* Sembunyikan header default Streamlit */
+    /* Sembunyikan header/footer asal */
     header {visibility: hidden;}
-    #MainMenu {visibility: hidden;}
     footer {visibility: hidden;}
 
-    /* Background Gradient untuk keseluruhan page */
+    /* BACKGROUND CINEMATIC */
     .stApp {
-        background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+        background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), 
+                          url("https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=2072&auto=format&fit=crop");
+        background-size: cover;
+        background-position: center;
+        background-attachment: fixed;
         color: white;
     }
 
-    /* Design Kad Tool (Glassmorphism) */
+    /* GLASSMORPHISM CARD */
     .tool-card {
-        background: rgba(255, 255, 255, 0.1);
-        backdrop-filter: blur(10px);
-        border-radius: 20px;
-        padding: 30px;
-        border: 1px solid rgba(255, 255, 255, 0.2);
+        background: rgba(255, 255, 255, 0.05);
+        backdrop-filter: blur(15px);
+        -webkit-backdrop-filter: blur(15px);
+        border-radius: 25px;
+        padding: 40px 20px;
+        border: 1px solid rgba(255, 255, 255, 0.1);
         text-align: center;
-        transition: transform 0.3s ease;
-        margin-bottom: 20px;
+        transition: all 0.4s ease;
+        margin-bottom: 10px;
     }
 
     .tool-card:hover {
-        transform: translateY(-10px);
-        background: rgba(255, 255, 255, 0.15);
+        transform: translateY(-12px);
+        background: rgba(255, 255, 255, 0.1);
+        border: 1px solid rgba(0, 210, 255, 0.5);
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
     }
 
-    /* Tajuk & Text */
-    h1, h2, h3, p {
-        color: white !important;
-        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    /* TYPOGRAPHY */
+    h1 {
+        font-family: 'Inter', sans-serif;
+        font-weight: 800;
+        letter-spacing: -1px;
+        text-shadow: 2px 2px 10px rgba(0,0,0,0.5);
     }
 
-    /* Button Styling */
+    p {
+        font-size: 1.1rem;
+        line-height: 1.6;
+        color: #e0e0e0 !important;
+    }
+
+    /* BUTTON STYLING */
     .stButton > button {
-        background: linear-gradient(90deg, #00d2ff 0%, #3a7bd5 100%);
+        background: linear-gradient(135deg, #00d2ff 0%, #3a7bd5 100%);
         color: white;
         border: none;
-        padding: 12px 24px;
-        border-radius: 50px;
-        font-weight: bold;
+        padding: 15px 30px;
+        border-radius: 12px;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 1px;
         width: 100%;
-        transition: 0.3s;
-        box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        transition: 0.3s all;
+        box-shadow: 0 4px 15px rgba(58, 123, 213, 0.3);
     }
 
     .stButton > button:hover {
-        box-shadow: 0 6px 20px rgba(0,210,255,0.4);
-        transform: scale(1.05);
+        transform: scale(1.03);
+        box-shadow: 0 8px 25px rgba(0, 210, 255, 0.5);
         color: white;
     }
 
-    /* Garis pemisah */
-    hr {
-        border: 0;
-        height: 1px;
-        background: rgba(255, 255, 255, 0.3);
+    /* Garis pemisah neon */
+    .neon-line {
+        height: 2px;
+        background: linear-gradient(90deg, transparent, #00d2ff, transparent);
+        margin: 20px 0;
     }
     </style>
 """, unsafe_allow_html=True)
 
-# --- 3. KANDUNGAN UTAMA ---
-st.markdown("<h1 style='text-align: center; font-size: 50px;'>🚀 Portal Tool Pintar</h1>", unsafe_allow_html=True)
-st.markdown("<p style='text-align: center; font-size: 18px; opacity: 0.8;'>Segala alatan digital anda di hujung jari.</p>", unsafe_allow_html=True)
-st.write("---")
+# --- 3. KANDUNGAN ---
+st.markdown("<br><br>", unsafe_allow_html=True)
+st.markdown("<h1 style='text-align: center; font-size: 55px; color: white;'>PORTAL TOOL PINTAR</h1>", unsafe_allow_html=True)
+st.markdown("<div class='neon-line'></div>", unsafe_allow_html=True)
+st.markdown("<p style='text-align: center; font-style: italic;'>Navigasi pantas ke semua alatan digital premium anda.</p>", unsafe_allow_html=True)
+st.write("")
 
 # --- 4. GRID TOOL ---
-
-# Baris 1
 col1, col2 = st.columns(2)
 
 with col1:
     st.markdown("""
         <div class="tool-card">
-            <h2 style='font-size: 40px;'>📈</h2>
-            <h3>Kalkulator Saham</h3>
-            <p>Semak untung rugi Bursa Malaysia dengan kiraan Brokerage, Stamp Duty & Clearing Fee tepat.</p>
+            <div style='font-size: 50px;'>📊</div>
+            <h2 style='color: white;'>Kalkulator Saham</h2>
+            <p>Analisis untung rugi Bursa Malaysia dengan kiraan fee broker 2025 yang tepat.</p>
         </div>
     """, unsafe_allow_html=True)
-    st.link_button("Buka Tool Saham", "https://kalkulatorsaham.streamlit.app/")
+    st.link_button("🚀 Lancarkan Tool", "https://kalkulatorsaham.streamlit.app/")
 
 with col2:
     st.markdown("""
         <div class="tool-card">
-            <h2 style='font-size: 40px;'>✨</h2>
-            <h3>Compounding</h3>
-            <p>Rancang masa depan anda dengan simulasi faedah kompaun dinamik (1-5 tahun rekod).</p>
+            <div style='font-size: 50px;'>💰</div>
+            <h2 style='color: white;'>Compounding</h2>
+            <p>Simulasi pelaburan masa depan anda menggunakan kuasa faedah kompaun dinamik.</p>
         </div>
     """, unsafe_allow_html=True)
-    st.link_button("Buka Tool Compounding", "https://kalkulatorcompounding.streamlit.app/")
+    st.link_button("🚀 Lancarkan Tool", "https://kalkulatorcompounding.streamlit.app/")
 
-st.write("") # Jarak
+st.write("")
 
 # Baris 2
-col3, _ = st.columns([1, 1])
-
-with col3:
+c1, c2, c3 = st.columns([0.5, 1, 0.5])
+with c2:
     st.markdown("""
         <div class="tool-card">
-            <h2 style='font-size: 40px;'>💣</h2>
-            <h3>Kuiz Sejarah</h3>
-            <p>Asah minda Sejarah Tahun 5 dengan cabaran bom meletup yang mendebarkan.</p>
+            <div style='font-size: 50px;'>🎮</div>
+            <h2 style='color: white;'>Kuiz Sejarah</h2>
+            <p>Cabaran interaktif Sejarah Tahun 5. Jawab dengan betul atau bom meletup!</p>
         </div>
     """, unsafe_allow_html=True)
-    st.link_button("Main Game Sejarah", "https://soalansejarahtahun5.streamlit.app/")
+    st.link_button("🚀 Main Sekarang", "https://soalansejarahtahun5.streamlit.app/")
 
 # --- 5. FOOTER ---
-st.write("---")
-st.markdown("<p style='text-align: center; opacity: 0.6;'>© 2026 Portal Pintar. Dicipta untuk kemudahan anda.</p>", unsafe_allow_html=True)
+st.markdown("<br><br><br>", unsafe_allow_html=True)
+st.markdown("<p style='text-align: center; font-size: 0.9rem; opacity: 0.5;'>© 2026 Portal Pintar v2.0 | Built with Cinematic UI</p>", unsafe_allow_html=True)
