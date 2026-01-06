@@ -3,12 +3,18 @@ import streamlit as st
 # --- 1. SETUP PAGE ---
 st.set_page_config(page_title="Portal Tool Pintar", page_icon="🚀", layout="centered")
 
-# --- 2. CUSTOM CSS (FIXED HEIGHT + INTEGRATED BUTTONS) ---
+# --- 2. CUSTOM CSS (TRIMMED TOP SPACE) ---
 st.markdown("""
     <style>
     /* Sembunyikan header/footer asal */
     header {visibility: hidden;}
     footer {visibility: hidden;}
+
+    /* KURANGKAN RUANG ATAS SEKALI */
+    .block-container {
+        padding-top: 1rem !important;
+        padding-bottom: 0rem !important;
+    }
 
     /* BACKGROUND CINEMATIC */
     .stApp {
@@ -20,7 +26,7 @@ st.markdown("""
         color: white;
     }
 
-    /* GLASSMORPHISM CARD DENGAN KETINGGIAN TETAP */
+    /* GLASSMORPHISM CARD */
     .tool-card {
         background: rgba(255, 255, 255, 0.05);
         backdrop-filter: blur(15px);
@@ -30,12 +36,10 @@ st.markdown("""
         border: 1px solid rgba(255, 255, 255, 0.1);
         text-align: center;
         transition: all 0.4s ease;
-        
-        /* Samakan saiz kotak & susun kandungan */
-        min-height: 400px; 
+        min-height: 380px; 
         display: flex;
         flex-direction: column;
-        justify-content: space-between; /* Paksa butang ke bawah */
+        justify-content: space-between;
         align-items: center;
         margin-bottom: 20px;
     }
@@ -51,9 +55,9 @@ st.markdown("""
         font-family: 'Inter', sans-serif;
         font-weight: 800;
         text-shadow: 2px 2px 10px rgba(0,0,0,0.5);
+        margin-top: 0px !important; /* Paksa margin h1 jadi 0 */
     }
 
-    /* CUSTOM HTML BUTTON STYLING */
     .custom-btn {
         background: linear-gradient(135deg, #00d2ff 0%, #3a7bd5 100%);
         color: white !important;
@@ -62,10 +66,8 @@ st.markdown("""
         border-radius: 50px;
         font-weight: 700;
         display: inline-block;
-        margin-top: auto;
         transition: 0.3s all;
         box-shadow: 0 4px 15px rgba(0, 210, 255, 0.3);
-        border: none;
     }
 
     .custom-btn:hover {
@@ -77,16 +79,16 @@ st.markdown("""
     .neon-line {
         height: 2px;
         background: linear-gradient(90deg, transparent, #00d2ff, transparent);
-        margin: 25px 0;
+        margin: 15px 0;
     }
     </style>
 """, unsafe_allow_html=True)
 
-# --- 3. KANDUNGAN ---
-st.markdown("<br><br>", unsafe_allow_html=True)
+# --- 3. KANDUNGAN (TAG <br> DIBUANG) ---
+# Saya dah buang st.markdown("<br><br>") supaya tajuk terus naik ke atas
 st.markdown("<h1 style='text-align: center; font-size: 50px; color: white;'>PORTAL TOOL PINTAR</h1>", unsafe_allow_html=True)
 st.markdown("<div class='neon-line'></div>", unsafe_allow_html=True)
-st.markdown("<p style='text-align: center; font-style: italic; font-size: 1.1rem; opacity: 0.8;'>Pusat navigasi eksklusif untuk semua alatan digital anda.</p>", unsafe_allow_html=True)
+st.markdown("<p style='text-align: center; font-style: italic; font-size: 1.1rem; opacity: 0.8;'>Navigasi eksklusif untuk alatan digital anda.</p>", unsafe_allow_html=True)
 st.write("")
 
 # --- 4. GRID TOOL ---
@@ -98,7 +100,6 @@ with col1:
             <div style='font-size: 50px;'>📊</div>
             <h2 style='color: white; margin-top:10px;'>Kalkulator Saham</h2>
             <p style='font-size: 0.95rem; opacity: 0.8;'>Analisis profit Bursa Malaysia dengan ketepatan fee broker 2025.</p>
-            <br>
             <a href="https://kalkulatorsaham.streamlit.app/" target="_blank" class="custom-btn">🚀 Lancarkan Tool</a>
         </div>
     """, unsafe_allow_html=True)
@@ -109,14 +110,12 @@ with col2:
             <div style='font-size: 50px;'>💰</div>
             <h2 style='color: white; margin-top:10px;'>Compounding</h2>
             <p style='font-size: 0.95rem; opacity: 0.8;'>Simulasi pertumbuhan aset anda menggunakan kuasa faedah kompaun.</p>
-            <br>
             <a href="https://kalkulatorcompounding.streamlit.app/" target="_blank" class="custom-btn">🚀 Lancarkan Tool</a>
         </div>
     """, unsafe_allow_html=True)
 
 st.write("<br>", unsafe_allow_html=True)
 
-# Baris 2 (Game Sejarah)
 c1, c2, c3 = st.columns([0.1, 0.8, 0.1]) 
 with c2:
     st.markdown("""
@@ -124,11 +123,10 @@ with c2:
             <div style='font-size: 50px;'>🎮</div>
             <h2 style='color: white; margin-top:10px;'>Kuiz Sejarah</h2>
             <p style='font-size: 0.95rem; opacity: 0.8;'>Uji ilmu Sejarah Tahun 5 dalam cabaran 'Nyahaktif Bom'. Jawab betul atau meletup!</p>
-            <br>
             <a href="https://soalansejarahtahun5.streamlit.app/" target="_blank" class="custom-btn">🚀 Main Sekarang</a>
         </div>
     """, unsafe_allow_html=True)
 
 # --- 5. FOOTER ---
-st.markdown("<br><br><br>", unsafe_allow_html=True)
-st.markdown("<p style='text-align: center; font-size: 0.85rem; opacity: 0.4;'>© 2026 Portal Pintar v2.6 | Uniform Cinematic Hub</p>", unsafe_allow_html=True)
+st.markdown("<br><br>", unsafe_allow_html=True)
+st.markdown("<p style='text-align: center; font-size: 0.85rem; opacity: 0.4;'>© 2026 Portal Pintar v2.7 | Uniform Cinematic Hub</p>", unsafe_allow_html=True)
