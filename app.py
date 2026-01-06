@@ -3,7 +3,7 @@ import streamlit as st
 # --- 1. SETUP PAGE ---
 st.set_page_config(page_title="Portal Tool Pintar", page_icon="🚀", layout="centered")
 
-# --- 2. CUSTOM CSS (FIXED HEIGHT + CENTERED BUTTONS) ---
+# --- 2. CUSTOM CSS (FIXED HEIGHT + INTEGRATED BUTTONS) ---
 st.markdown("""
     <style>
     /* Sembunyikan header/footer asal */
@@ -20,23 +20,23 @@ st.markdown("""
         color: white;
     }
 
-    /* GLASSMORPHISM CARD DENGAN UNIFORM SIZE */
+    /* GLASSMORPHISM CARD DENGAN KETINGGIAN TETAP */
     .tool-card {
         background: rgba(255, 255, 255, 0.05);
         backdrop-filter: blur(15px);
         -webkit-backdrop-filter: blur(15px);
         border-radius: 25px;
-        padding: 35px 25px;
+        padding: 30px 20px;
         border: 1px solid rgba(255, 255, 255, 0.1);
         text-align: center;
         transition: all 0.4s ease;
         
-        /* Teknik Flexbox untuk samakan saiz & letak butang di bawah */
+        /* Samakan saiz kotak & susun kandungan */
+        min-height: 400px; 
         display: flex;
         flex-direction: column;
-        justify-content: space-between;
+        justify-content: space-between; /* Paksa butang ke bawah */
         align-items: center;
-        min-height: 400px; /* Samakan ketinggian semua kotak */
         margin-bottom: 20px;
     }
 
@@ -53,30 +53,25 @@ st.markdown("""
         text-shadow: 2px 2px 10px rgba(0,0,0,0.5);
     }
 
-    /* LOGIK BUTANG DI TENGAH BAWAH KOTAK */
-    .stButton {
-        width: 100%;
-        display: flex;
-        justify-content: center;
-        margin-top: auto; /* Paksa butang ke bahagian bawah kotak */
-    }
-
-    .stButton > button {
+    /* CUSTOM HTML BUTTON STYLING */
+    .custom-btn {
         background: linear-gradient(135deg, #00d2ff 0%, #3a7bd5 100%);
         color: white !important;
-        border: none;
-        padding: 10px 30px !important;
-        border-radius: 50px !important;
+        text-decoration: none;
+        padding: 12px 35px;
+        border-radius: 50px;
         font-weight: 700;
-        width: auto !important;
-        min-width: 180px;
+        display: inline-block;
+        margin-top: auto;
         transition: 0.3s all;
         box-shadow: 0 4px 15px rgba(0, 210, 255, 0.3);
+        border: none;
     }
 
-    .stButton > button:hover {
+    .custom-btn:hover {
         transform: scale(1.08);
         box-shadow: 0 8px 25px rgba(0, 210, 255, 0.6);
+        color: white !important;
     }
 
     .neon-line {
@@ -98,34 +93,41 @@ st.write("")
 col1, col2 = st.columns(2)
 
 with col1:
-    # Buka kotak
-    st.markdown('<div class="tool-card">', unsafe_allow_html=True)
-    st.markdown(" <div style='font-size: 50px;'>📊</div>", unsafe_allow_html=True)
-    st.markdown(" <h2 style='color: white; margin-top:10px;'>Kalkulator Saham</h2>", unsafe_allow_html=True)
-    st.markdown(" <p style='font-size: 0.95rem; opacity: 0.8;'>Analisis profit Bursa Malaysia dengan ketepatan fee broker 2025.</p>", unsafe_allow_html=True)
-    # Butang diletakkan di dalam div kotak
-    st.link_button("🚀 Lancarkan Tool", "https://kalkulatorsaham.streamlit.app/")
-    st.markdown('</div>', unsafe_allow_html=True)
+    st.markdown("""
+        <div class="tool-card">
+            <div style='font-size: 50px;'>📊</div>
+            <h2 style='color: white; margin-top:10px;'>Kalkulator Saham</h2>
+            <p style='font-size: 0.95rem; opacity: 0.8;'>Analisis profit Bursa Malaysia dengan ketepatan fee broker 2025.</p>
+            <br>
+            <a href="https://kalkulatorsaham.streamlit.app/" target="_blank" class="custom-btn">🚀 Lancarkan Tool</a>
+        </div>
+    """, unsafe_allow_html=True)
 
 with col2:
-    st.markdown('<div class="tool-card">', unsafe_allow_html=True)
-    st.markdown(" <div style='font-size: 50px;'>💰</div>", unsafe_allow_html=True)
-    st.markdown(" <h2 style='color: white; margin-top:10px;'>Compounding</h2>", unsafe_allow_html=True)
-    st.markdown(" <p style='font-size: 0.95rem; opacity: 0.8;'>Simulasi pertumbuhan aset anda menggunakan kuasa faedah kompaun.</p>", unsafe_allow_html=True)
-    st.link_button("🚀 Lancarkan Tool", "https://kalkulatorcompounding.streamlit.app/")
-    st.markdown('</div>', unsafe_allow_html=True)
+    st.markdown("""
+        <div class="tool-card">
+            <div style='font-size: 50px;'>💰</div>
+            <h2 style='color: white; margin-top:10px;'>Compounding</h2>
+            <p style='font-size: 0.95rem; opacity: 0.8;'>Simulasi pertumbuhan aset anda menggunakan kuasa faedah kompaun.</p>
+            <br>
+            <a href="https://kalkulatorcompounding.streamlit.app/" target="_blank" class="custom-btn">🚀 Lancarkan Tool</a>
+        </div>
+    """, unsafe_allow_html=True)
 
 st.write("<br>", unsafe_allow_html=True)
 
-# Baris 2 (Game Sejarah) - Guna layout yang sama supaya size kotak konsisten
+# Baris 2 (Game Sejarah)
 c1, c2, c3 = st.columns([0.1, 0.8, 0.1]) 
 with c2:
-    st.markdown('<div class="tool-card">', unsafe_allow_html=True)
-    st.markdown(" <div style='font-size: 50px;'>🎮</div>", unsafe_allow_html=True)
-    st.markdown(" <h2 style='color: white; margin-top:10px;'>Kuiz Sejarah</h2>", unsafe_allow_html=True)
-    st.markdown(" <p style='font-size: 0.95rem; opacity: 0.8;'>Uji ilmu Sejarah Tahun 5 dalam cabaran 'Nyahaktif Bom'. Jawab betul atau meletup!</p>", unsafe_allow_html=True)
-    st.link_button("🚀 Main Sekarang", "https://soalansejarahtahun5.streamlit.app/")
-    st.markdown('</div>', unsafe_allow_html=True)
+    st.markdown("""
+        <div class="tool-card">
+            <div style='font-size: 50px;'>🎮</div>
+            <h2 style='color: white; margin-top:10px;'>Kuiz Sejarah</h2>
+            <p style='font-size: 0.95rem; opacity: 0.8;'>Uji ilmu Sejarah Tahun 5 dalam cabaran 'Nyahaktif Bom'. Jawab betul atau meletup!</p>
+            <br>
+            <a href="https://soalansejarahtahun5.streamlit.app/" target="_blank" class="custom-btn">🚀 Main Sekarang</a>
+        </div>
+    """, unsafe_allow_html=True)
 
 # --- 5. FOOTER ---
 st.markdown("<br><br><br>", unsafe_allow_html=True)
